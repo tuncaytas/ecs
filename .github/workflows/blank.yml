@@ -22,7 +22,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: copied-files
-        path: destination_folder
+        path: destination
 
   deploy:
     needs: copyFile
