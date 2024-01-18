@@ -18,6 +18,7 @@ jobs:
         mkdir -p destination
         mkdir -p source_folder
         cd source_folder
+        cd ..
         touch your_file.txt
         cp source_folder/your_file.txt destination/
 
