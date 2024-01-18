@@ -3,7 +3,7 @@ name: Copy File Workflow
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   copyFile:
@@ -13,30 +13,15 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v2
 
-    - name: Copy File to Another Folder
+    - name: Create Directories and File
       run: |
         mkdir -p destination
         mkdir -p source_folder
-        cd source_folder
-        cd ..
-        touch your_file.txt
+        touch source_folder/your_file.txt
+
+    - name: Copy File to Another Folder
+      run: |
         cp source_folder/your_file.txt destination/
-
-    - name: Upload Artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: copied-files
-        path: destination
-
-  deploy:
-    needs: copyFile
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Download Artifact
-      uses: actions/download-artifact@v2
-      with:
-        name: copied-files
 
     - name: Display Copied Files
       run: |
